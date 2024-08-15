@@ -29,9 +29,15 @@ public class MemberService {
 			return -1;
 		}
 		
+		existMember = getMemberByNameAndEmail(name,email);
+		
 		memberRepository.dojoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		
 		return memberRepository.getLastInsertId();
+	}
+
+	private Member getMemberByNameAndEmail(String name, String email) {
+		return memberRepository.getMemberByNameAndEmail(name,email);
 	}
 
 	private Member getMemberByLoginId(String loginId) {
