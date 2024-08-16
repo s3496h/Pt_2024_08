@@ -18,7 +18,7 @@ public class UsrMemberController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping("/usr/member/doJ	oin")
+	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
 	public Object doJoin(String LoginId, String LoginPw,String name,String nickname,String cellphoneNum,String email) {
         
@@ -49,7 +49,11 @@ public class UsrMemberController {
 		int id = memberService.dojoin(LoginId,LoginPw,name,nickname,cellphoneNum,email);
 		
 		if(id == -1) {
-			return "이미 사용중인 아이디야";
+			return Ut.f("이미 사용중인 아이디(%s)입니다.",LoginId);
+		}
+		
+		if(id == -2) {
+			return Ut.f("이미 사용중인 이름(%s) 과 이메일(%s)입니다.",name,email);
 		}
 		
 		Member member = memberService.getMemberById(id);

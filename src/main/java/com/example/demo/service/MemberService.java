@@ -31,6 +31,10 @@ public class MemberService {
 		
 		existMember = getMemberByNameAndEmail(name,email);
 		
+		if(existMember != null) {
+			return -2;
+		}
+		
 		memberRepository.dojoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		
 		return memberRepository.getLastInsertId();
