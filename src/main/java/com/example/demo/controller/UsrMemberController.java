@@ -49,11 +49,11 @@ public class UsrMemberController {
 		int id = memberService.dojoin(LoginId,LoginPw,name,nickname,cellphoneNum,email);
 		
 		if(id == -1) {
-			return Ut.f("이미 사용중인 아이디(%s)입니다.",LoginId);
+			return Ut.f("이미 사용중인 아이디(%s)",LoginId);
 		}
 		
 		if(id == -2) {
-			return Ut.f("이미 사용중인 이름(%s) 과 이메일(%s)입니다.",name,email);
+			return Ut.f("이미 사용중인 이름(%s) 과 이메일 (%s)",name,email);
 		}
 		
 		Member member = memberService.getMemberById(id);
