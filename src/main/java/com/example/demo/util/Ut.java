@@ -5,12 +5,13 @@ import java.util.Map;
 
 public class Ut {
 
-	public static boolean EmptyOrNull(String str) {
+	public static boolean isEmptyOrNull(String str) {
 
-		return str.trim().length() == 0 || str == null;
+		return str == null || str.trim().length() == 0 ;
+	
 	}
 
-	public static boolean Empty(Object obj) {
+	public static boolean isEmpty(Object obj) {
      if (obj == null ) {
     	 return true;
      }

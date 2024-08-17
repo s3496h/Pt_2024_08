@@ -22,25 +22,25 @@ public class UsrMemberController {
 	@ResponseBody
 	public Object doJoin(String LoginId, String LoginPw,String name,String nickname,String cellphoneNum,String email) {
         
-		if (Ut.EmptyOrNull(LoginId)) {
+		if (Ut.isEmptyOrNull(LoginId)) {
 			return "LoginId를 입력해주세요 ";
 		}
-		if (Ut.EmptyOrNull(LoginPw)) {
+		if (Ut.isEmptyOrNull(LoginPw)) {
 			return "LoginPw를 입력해주세요 ";
 		}
 	
-		if (Ut.EmptyOrNull(name)) {
+		if (Ut.isEmptyOrNull(name)) {
 			return "name를 입력해주세요 ";
 		}
 	
-		if (Ut.EmptyOrNull(nickname)) {
+		if (Ut.isEmptyOrNull(nickname)) {
 			return "nickname를 입력해주세요 ";
 		}
 	
-		if (Ut.EmptyOrNull(cellphoneNum)) {
+		if (Ut.isEmptyOrNull(cellphoneNum)) {
 			return "cellphoneNum를 입력해주세요 ";
 		}
-		if (Ut.EmptyOrNull(email)) {
+		if (Ut.isEmptyOrNull(email)) {
 			return "email를 입력해주세요 ";
 		}
 	

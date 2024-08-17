@@ -25,10 +25,10 @@ public class ResultData {
 		return rd;
 
 	}
-	public boolean isSuccces() {
+	public boolean isSuccess() {
 		return ResultCode.startsWith("S-");
 	}
 	public boolean isFail() {
-	return ResultCode.startsWith("F-");
+	return !isSuccess() == false;
 	}
 }
