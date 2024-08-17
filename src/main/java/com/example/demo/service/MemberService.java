@@ -23,7 +23,7 @@ public class MemberService {
 		return memberRepository.getMemberById(id);
 	}
 
-	public ResultData doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,String email) {
+	public ResultData<Integer> doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,String email) {
 		
 		Member existMember = getMemberByLoginId(loginId);
 		
