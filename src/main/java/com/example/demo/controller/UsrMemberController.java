@@ -12,6 +12,7 @@ import com.example.demo.service.MemberService;
 import com.example.demo.util.Ut;
 import com.example.demo.vo.Article;
 import com.example.demo.vo.Member;
+import com.example.demo.vo.ResultData;
 
 @Controller
 public class UsrMemberController {
@@ -20,44 +21,46 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doJoin")
 	@ResponseBody
-	public Object doJoin(String LoginId, String LoginPw,String name,String nickname,String cellphoneNum,String email) {
+	public ResultData doJoin(String loginId, String loginPw, String name, String nickname, String cellphoneNum,String email) {
         
-		if (Ut.isEmptyOrNull(LoginId)) {
-			return "LoginId를 입력해주세요 ";
-		}
-		if (Ut.isEmptyOrNull(LoginPw)) {
-			return "LoginPw를 입력해주세요 ";
+		if (Ut.isEmptyOrNull(loginId)) {
+			return ResultData.from("F-1", "loginId 입력 x");
 		}
 	
+		if (Ut.isEmptyOrNull(loginPw)) {
+			return ResultData.from("F-2", "loginPw 입력 x");
+		}
+	
+	
 		if (Ut.isEmptyOrNull(name)) {
-			return "name를 입력해주세요 ";
+			return ResultData.from("F-3", "name를 입력해주세요");
 		}
 	
 		if (Ut.isEmptyOrNull(nickname)) {
-			return "nickname를 입력해주세요 ";
+			return ResultData.from("F-3", "name 입력 x");
 		}
+	
 	
 		if (Ut.isEmptyOrNull(cellphoneNum)) {
-			return "cellphoneNum를 입력해주세요 ";
+			return ResultData.from("F-5", "cellphoneNum 입력 x");
 		}
-		if (Ut.isEmptyOrNull(email)) {
-			return "email를 입력해주세요 ";
+	
+		if (Ut.isEmptyOrNull(email )) {
+			return ResultData.from("F-6", "email 입력 x");
 		}
+	
 	
 		
 	
-		int id = memberService.dojoin(LoginId,LoginPw,name,nickname,cellphoneNum,email);
+		ResultData doJoinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		
-		if(id == -1) {
-			return Ut.f("이미 사용중인 아이디(%s)",LoginId);
+		if (doJoinRd.isFail()) {
+			return doJoinRd;
 		}
 		
-		if(id == -2) {
-			return Ut.f("이미 사용중인 이름(%s) 과 이메일 (%s)",name,email);
-		}
 		
-		Member member = memberService.getMemberById(id);
-		return member;
+		Member member = memberService.getMemberById((int) doJoinRd.getData1());
+		return ResultData.newData(doJoinRd, member);
 	}
 
 }
